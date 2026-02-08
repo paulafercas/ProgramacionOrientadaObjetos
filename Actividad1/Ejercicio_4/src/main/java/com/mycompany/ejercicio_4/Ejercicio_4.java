@@ -22,6 +22,6 @@ public class Ejercicio_4 {
         edad_alberto = Edades.calcular_edad_Alberto(edad_juan);
         edad_ana = Edades.calcular_edad_Ana(edad_juan);
         edad_mama = Edades.calcular_edad_mama(edad_juan, edad_alberto, edad_ana);
-        System.out.println("Las edades son: Alberto: " + edad_alberto + " Ana: "+ edad_ana+" Mama: "+ edad_mama);
+        System.out.println("Las edades en años de cada persona son Alberto: " + edad_alberto + " Ana: "+ edad_ana+" Mama: "+ edad_mama);
     }
 }
