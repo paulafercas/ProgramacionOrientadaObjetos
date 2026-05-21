@@ -153,11 +153,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Calcular"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="calcularActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="limpiar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Limpiar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="limpiarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="promedio">
       <Properties>

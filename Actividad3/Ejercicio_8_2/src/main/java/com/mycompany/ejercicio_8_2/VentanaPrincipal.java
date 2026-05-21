@@ -58,8 +58,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         nota5.setText("Nota 5:");
 
         calcular.setText("Calcular");
+        calcular.addActionListener(this::calcularActionPerformed);
 
         limpiar.setText("Limpiar");
+        limpiar.addActionListener(this::limpiarActionPerformed);
 
         promedio.setText("jLabel1");
 
@@ -146,6 +148,44 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarActionPerformed
+        // TODO add your handling code here:
+        campoNota1.setText("");
+        campoNota2.setText("");
+        campoNota3.setText("");
+        campoNota4.setText("");
+        campoNota5.setText("");
+    }//GEN-LAST:event_limpiarActionPerformed
+
+    private void calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcularActionPerformed
+        // TODO add your handling code here:
+        Notas notas = new Notas(); // Se crea un objeto Notas
+        // Se obtiene y convierte el valor numérico de la nota 1
+        notas.listaNotas[0] = Double.parseDouble(campoNota1.getText());
+        // Se obtiene y convierte el valor numérico de la nota 2
+        notas.listaNotas[1] = Double.parseDouble(campoNota2.getText());
+        // Se obtiene y convierte el valor numérico de la nota 3
+        notas.listaNotas[2] = Double.parseDouble(campoNota3.getText());
+        // Se obtiene y convierte el valor numérico de la nota 4
+        notas.listaNotas[3] = Double.parseDouble(campoNota4.getText());
+        // Se obtiene y convierte el valor numérico de la nota 5
+        notas.listaNotas[4] = Double.parseDouble(campoNota5.getText());
+        
+        
+        notas.calcularPromedio(); // Se calcula el promedio
+        notas.calcularDesviación(); // Se calcula la desviación
+        // Se muestra el promedio formateado
+        promedio.setText("Promedio = " + String.valueOf(String.format("%.2f",notas.calcularPromedio())));
+        
+        double desv = notas.calcularDesviación();
+        // Se muestra la desviación formateada
+        desviación.setText("Desviación estándar = " + String.format("%.2f", desv));
+        // Se muestra el valor mayor formateado
+        mayor.setText("Valor mayor = " + String.valueOf(notas.calcularMayor()));
+        // Se muestra el valor menor formateado
+        menor.setText("Valor menor = " + String.valueOf(notas.calcularMenor()));
+    }//GEN-LAST:event_calcularActionPerformed
 
     /**
      * @param args the command line arguments
