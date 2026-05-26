@@ -46,6 +46,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menor = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Notas");
 
         nota1.setText("Nota 1:");
 
