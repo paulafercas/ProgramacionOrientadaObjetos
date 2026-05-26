@@ -36,7 +36,7 @@ public class VentanaEsfera extends javax.swing.JFrame {
 
         Radio = new javax.swing.JLabel();
         campoRadio = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        Calcular = new javax.swing.JButton();
         campoVolumen = new javax.swing.JLabel();
         campoSuperficie = new javax.swing.JLabel();
 
@@ -44,8 +44,8 @@ public class VentanaEsfera extends javax.swing.JFrame {
 
         Radio.setText("Radio (cms)");
 
-        jButton1.setText("Calcular");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        Calcular.setText("Calcular");
+        Calcular.addActionListener(this::CalcularActionPerformed);
 
         campoVolumen.setText("jLabel1");
 
@@ -64,7 +64,7 @@ public class VentanaEsfera extends javax.swing.JFrame {
                         .addComponent(Radio, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                            .addComponent(Calcular, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                             .addComponent(campoRadio))))
                 .addContainerGap(87, Short.MAX_VALUE))
         );
@@ -76,7 +76,7 @@ public class VentanaEsfera extends javax.swing.JFrame {
                     .addComponent(Radio)
                     .addComponent(campoRadio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Calcular, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addComponent(campoVolumen)
                 .addGap(26, 26, 26)
@@ -87,7 +87,7 @@ public class VentanaEsfera extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void CalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcularActionPerformed
         // TODO add your handling code here:
         boolean error = false;
         try {
@@ -110,7 +110,7 @@ public class VentanaEsfera extends javax.swing.JFrame {
         }
 
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_CalcularActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,10 +138,10 @@ public class VentanaEsfera extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Calcular;
     private javax.swing.JLabel Radio;
     private javax.swing.JTextField campoRadio;
     private javax.swing.JLabel campoSuperficie;
     private javax.swing.JLabel campoVolumen;
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

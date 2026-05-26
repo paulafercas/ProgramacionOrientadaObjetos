@@ -34,24 +34,24 @@ public class VentanaCilindro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        Radio = new javax.swing.JLabel();
+        Altura = new javax.swing.JLabel();
         campoRadio = new javax.swing.JTextField();
         campoAltura = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        Calcular = new javax.swing.JButton();
         campoVolumen = new javax.swing.JLabel();
         campoSuperficie = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Radio (cms):");
+        Radio.setText("Radio (cms):");
 
-        jLabel2.setText("Altura (cms:)");
+        Altura.setText("Altura (cms:)");
 
         campoRadio.addActionListener(this::campoRadioActionPerformed);
 
-        jButton1.setText("Calcular");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        Calcular.setText("Calcular");
+        Calcular.addActionListener(this::CalcularActionPerformed);
 
         campoVolumen.setText("jLabel3");
 
@@ -68,11 +68,11 @@ public class VentanaCilindro extends javax.swing.JFrame {
                     .addComponent(campoVolumen)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
+                            .addComponent(Altura)
+                            .addComponent(Radio))
                         .addGap(54, 54, 54)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                            .addComponent(Calcular, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                             .addComponent(campoRadio)
                             .addComponent(campoAltura))))
                 .addContainerGap(74, Short.MAX_VALUE))
@@ -82,14 +82,14 @@ public class VentanaCilindro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
+                    .addComponent(Radio)
                     .addComponent(campoRadio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
+                    .addComponent(Altura)
                     .addComponent(campoAltura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
-                .addComponent(jButton1)
+                .addComponent(Calcular)
                 .addGap(10, 10, 10)
                 .addComponent(campoVolumen)
                 .addGap(18, 18, 18)
@@ -104,7 +104,7 @@ public class VentanaCilindro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoRadioActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void CalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcularActionPerformed
         // TODO add your handling code here:
         // Se inicializan el radio y la altura del cilindro
         boolean error = false; /* Se inicializa variable para determinar si 
@@ -136,7 +136,7 @@ public class VentanaCilindro extends javax.swing.JFrame {
                 }
             }
           
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_CalcularActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,12 +165,12 @@ public class VentanaCilindro extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Altura;
+    private javax.swing.JButton Calcular;
+    private javax.swing.JLabel Radio;
     private javax.swing.JTextField campoAltura;
     private javax.swing.JTextField campoRadio;
     private javax.swing.JLabel campoSuperficie;
     private javax.swing.JLabel campoVolumen;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

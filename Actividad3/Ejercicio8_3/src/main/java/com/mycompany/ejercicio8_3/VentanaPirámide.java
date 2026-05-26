@@ -34,28 +34,28 @@ public class VentanaPirámide extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        Base = new javax.swing.JLabel();
+        Altura = new javax.swing.JLabel();
+        Apotema = new javax.swing.JLabel();
         campoBase = new javax.swing.JTextField();
         campoAltura = new javax.swing.JTextField();
         campoApotema = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        Calcular = new javax.swing.JButton();
         campoVolumen = new javax.swing.JLabel();
         campoSuperficie = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Base (cms):");
+        Base.setText("Base (cms):");
 
-        jLabel2.setText("Altura (cms):");
+        Altura.setText("Altura (cms):");
 
-        jLabel3.setText("Apotema (cms):");
+        Apotema.setText("Apotema (cms):");
 
         campoBase.addActionListener(this::campoBaseActionPerformed);
 
-        jButton1.setText("Calcular");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        Calcular.setText("Calcular");
+        Calcular.addActionListener(this::CalcularActionPerformed);
 
         campoVolumen.setText("jLabel4");
 
@@ -72,12 +72,12 @@ public class VentanaPirámide extends javax.swing.JFrame {
                     .addComponent(campoVolumen)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(Apotema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Altura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Base, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                            .addComponent(Calcular, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                             .addComponent(campoBase)
                             .addComponent(campoAltura)
                             .addComponent(campoApotema))))
@@ -88,18 +88,18 @@ public class VentanaPirámide extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(Base)
                     .addComponent(campoBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(Altura)
                     .addComponent(campoAltura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(Apotema)
                     .addComponent(campoApotema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(Calcular)
                 .addGap(27, 27, 27)
                 .addComponent(campoVolumen)
                 .addGap(29, 29, 29)
@@ -114,7 +114,7 @@ public class VentanaPirámide extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoBaseActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void CalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcularActionPerformed
         // TODO add your handling code here:
         Pirámide pirámide;
         boolean error = false;
@@ -146,7 +146,7 @@ public class VentanaPirámide extends javax.swing.JFrame {
             }
         }
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_CalcularActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,14 +174,14 @@ public class VentanaPirámide extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Altura;
+    private javax.swing.JLabel Apotema;
+    private javax.swing.JLabel Base;
+    private javax.swing.JButton Calcular;
     private javax.swing.JTextField campoAltura;
     private javax.swing.JTextField campoApotema;
     private javax.swing.JTextField campoBase;
     private javax.swing.JLabel campoSuperficie;
     private javax.swing.JLabel campoVolumen;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
