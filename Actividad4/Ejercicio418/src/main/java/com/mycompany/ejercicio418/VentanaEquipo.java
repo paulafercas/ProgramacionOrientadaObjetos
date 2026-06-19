@@ -40,7 +40,7 @@ public class VentanaEquipo extends javax.swing.JFrame {
         campoLenguaje = new javax.swing.JTextField();
         Guardar = new javax.swing.JButton();
         campoNumeroIntegrantes = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        datos = new javax.swing.JLabel();
         nombreParticipante = new javax.swing.JLabel();
         apellidoParticipante = new javax.swing.JLabel();
         campoNombreParticipante = new javax.swing.JTextField();
@@ -65,7 +65,7 @@ public class VentanaEquipo extends javax.swing.JFrame {
         Guardar.setText("Guardar información equipo");
         Guardar.addActionListener(this::GuardarActionPerformed);
 
-        jLabel1.setText("Datos de cada participante  ");
+        datos.setText("Datos de cada participante  ");
 
         nombreParticipante.setText("Nombre");
 
@@ -102,7 +102,7 @@ public class VentanaEquipo extends javax.swing.JFrame {
                                 .addComponent(campoNumeroIntegrantes, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                            .addComponent(datos)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(90, 90, 90)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -143,7 +143,7 @@ public class VentanaEquipo extends javax.swing.JFrame {
                     .addComponent(Guardar)
                     .addComponent(Limpiar))
                 .addGap(39, 39, 39)
-                .addComponent(jLabel1)
+                .addComponent(datos)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreParticipante)
@@ -295,8 +295,8 @@ public class VentanaEquipo extends javax.swing.JFrame {
     private javax.swing.JTextField campoNombreParticipante;
     private javax.swing.JTextField campoNumeroIntegrantes;
     private javax.swing.JTextField campoUniversidad;
+    private javax.swing.JLabel datos;
     private javax.swing.JButton datosParticipante;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lenguaje;
     private javax.swing.JLabel nombreParticipante;
     private javax.swing.JLabel nombreequipo;
