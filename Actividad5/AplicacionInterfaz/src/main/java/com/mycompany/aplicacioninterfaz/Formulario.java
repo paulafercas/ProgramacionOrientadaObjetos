@@ -4,6 +4,13 @@
  */
 package com.mycompany.aplicacioninterfaz;
 
+
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.lang.NumberFormatException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author paula
@@ -121,10 +128,162 @@ public class Formulario extends javax.swing.JFrame {
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         // TODO add your handling code here:
+        try {
+
+            // Get the name of the contact to be updated
+            // from the Command line argument
+            String newName = String.valueOf(fieldName.getText());
+
+            // Get the number to be updated
+            // from the Command line argument
+            long newNumber = Long.parseLong(fieldNumber.getText());
+
+            String nameNumberString;
+            String name;
+            long number;
+            int index;
+
+            // Using file pointer creating the file.
+            File file = new File("C:\\Users\\paula\\OneDrive\\Documentos\\GitHub\\ProgramacionOrientadaObjetos\\Actividad5\\friendsContact.txt");
+
+            if (!file.exists()) {
+
+                // Create a new file if not exists.
+                file.createNewFile();
+            }
+
+            // Opening file in reading and write mode.
+
+            RandomAccessFile raf
+                = new RandomAccessFile(file, "rw");
+            boolean found = false;
+
+            // Checking whether the name
+            // of contact already exists.
+            // getFilePointer() give the current offset
+            // value from start of the file.
+            while (raf.getFilePointer() < raf.length()) {
+
+                // reading line from the file.
+                nameNumberString = raf.readLine();
+
+                // splitting the string to get name and
+                // number
+                String[] lineSplit
+                    = nameNumberString.split("_");
+
+                // separating name and number.
+                name = lineSplit[0];
+                number = Long.parseLong(lineSplit[1]);
+
+                // if condition to find existence of record.
+                if ( number == newNumber && name.equals(newName)) {
+                    found = true;
+                    JOptionPane.showMessageDialog(null, "Attention "+newName+" The record exists", "Existing Name", JOptionPane.WARNING_MESSAGE);
+                    
+                    break;
+                }
+            }
+
+            if (found == false) {
+
+                // Enter the if block when a record
+                // is not already present in the file.
+                nameNumberString
+                    = newName + "_"
+                      + String.valueOf(newNumber);
+
+                // writeBytes function to write a string
+                // as a sequence of bytes.
+                raf.writeBytes(nameNumberString);
+
+                // To insert the next record in new line.
+                raf.writeBytes(System.lineSeparator());
+
+                // Print the message
+                JOptionPane.showMessageDialog(null, "The friend "+newName + " was added", "Friend added", JOptionPane.INFORMATION_MESSAGE);
+             
+
+                // Closing the resources.
+                raf.close();
+            }
+            // The contact to be updated
+            // could not be found
+            else {
+
+                // Closing the resources.
+                raf.close();
+
+            }
+        }
+
+        catch (IOException ioe) {
+
+            System.out.println(ioe);
+        }
+        catch (NumberFormatException nef) {
+
+            System.out.println(nef);
+        }
+    
+
     }//GEN-LAST:event_createButtonActionPerformed
 
     private void readButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readButtonActionPerformed
         // TODO add your handling code here:
+        
+        try {
+
+            String nameNumberString;
+            String name;
+            long number;
+            int index;
+
+            // Using file pointer creating the file.
+            File file = new File("C:\\Users\\paula\\OneDrive\\Documentos\\GitHub\\ProgramacionOrientadaObjetos\\Actividad5\\friendsContact.txt");
+
+            if (!file.exists()) {
+
+                // Create a new file if not exists.
+                file.createNewFile();
+            }
+
+            // Opening file in reading and write mode.
+
+            RandomAccessFile raf = new RandomAccessFile(file, "rw");
+            boolean found = false;
+
+            // Traversing the file
+            // getFilePointer() give the current offset
+            // value from start of the file.
+            while (raf.getFilePointer() < raf.length()) {
+
+                // reading line from the file.
+                nameNumberString = raf.readLine();
+
+                // splitting the string to get name and
+                // number
+                String[] lineSplit
+                    = nameNumberString.split("_");
+
+                // separating name and number.
+                name = lineSplit[0];
+                number = Long.parseLong(lineSplit[1]);
+
+                // Print the contact data
+                System.out.println(
+                    "Friend Name: " + name + "\n"
+                    + "Contact Number: " + number + "\n");
+            }
+            }catch (IOException ioe){
+
+                System.out.println(ioe);
+            }catch (NumberFormatException nef){
+
+                System.out.println(nef);
+            }
+        
+    
     }//GEN-LAST:event_readButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
