@@ -59,6 +59,7 @@ public class Formulario extends javax.swing.JFrame {
         readButton.addActionListener(this::readButtonActionPerformed);
 
         updateButton.setText("Update");
+        updateButton.addActionListener(this::updateButtonActionPerformed);
 
         deleteButton.setText("Delete");
         deleteButton.addActionListener(this::deleteButtonActionPerformed);
@@ -67,6 +68,7 @@ public class Formulario extends javax.swing.JFrame {
         clearButton.addActionListener(this::clearButtonActionPerformed);
 
         exitButton.setText("Exit");
+        exitButton.addActionListener(this::exitButtonActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -236,6 +238,9 @@ public class Formulario extends javax.swing.JFrame {
 
             String nameNumberString;
             String name;
+            
+            String newName = fieldName.getText();
+            
             long number;
             int index;
 
@@ -269,11 +274,19 @@ public class Formulario extends javax.swing.JFrame {
                 // separating name and number.
                 name = lineSplit[0];
                 number = Long.parseLong(lineSplit[1]);
+                
+                // We ask if the newname is equals to name
+                if (name.equals(newName)){
+                    fieldName.setText(name);
+                    fieldNumber.setText(String.valueOf(number));
+                    found = true;
+                    JOptionPane.showMessageDialog(null, "The friend " + newName+" was found", "Successfull", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else if(!name.equals(newName)){
+                    JOptionPane.showMessageDialog(null, "The friend "+ newName+" does not exist", "Failed", JOptionPane.WARNING_MESSAGE);
+                }
 
-                // Print the contact data
-                System.out.println(
-                    "Friend Name: " + name + "\n"
-                    + "Contact Number: " + number + "\n");
+
             }
             }catch (IOException ioe){
 
@@ -288,6 +301,143 @@ public class Formulario extends javax.swing.JFrame {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
+        try {
+
+            // Get the name of the contact to be updated
+            // from the Command line argument
+            String newName = fieldName.getText();
+
+            String nameNumberString;
+            
+            String name;
+            long number;
+            int index;
+
+            // Using file pointer creating the file.
+            File file = new File("C:\\Users\\paula\\OneDrive\\Documentos\\GitHub\\ProgramacionOrientadaObjetos\\Actividad5\\friendsContact.txt");
+
+            if (!file.exists()) {
+
+                // Create a new file if not exists.
+                file.createNewFile();
+            }
+
+            // Opening file in reading and write mode.
+            RandomAccessFile raf = new RandomAccessFile(file, "rw");
+            boolean found = false;
+
+            // Checking whether the name of contact exists.
+            // getFilePointer() give the current offset
+            // value from start of the file.
+            while (raf.getFilePointer() < raf.length()) {
+
+                // reading line from the file.
+                nameNumberString = raf.readLine();
+
+                // splitting the string to get name and
+                // number
+                String[] lineSplit = nameNumberString.split("_");
+
+                // separating name and number.
+                name = lineSplit[0];
+                number = Long.parseLong(lineSplit[1]);
+
+                // if condition to find existence of record.
+                if (name.equals(newName) ) {
+                    found = true;
+                    break;
+                }
+            }
+
+            // Delete the contact if record exists.
+            if (found == true) {
+
+                // Creating a temporary file
+                // with file pointer as tmpFile.
+                File tmpFile = new File("C:\\Users\\paula\\OneDrive\\Documentos\\GitHub\\ProgramacionOrientadaObjetos\\Actividad5\\tempDelete.txt");
+
+                // Opening this temporary file
+                // in ReadWrite Mode
+                RandomAccessFile tmpraf = new RandomAccessFile(tmpFile, "rw");
+
+                // Set file pointer to start
+                raf.seek(0);
+
+                // Traversing the friendsContact.txt file
+                while (raf.getFilePointer() < raf.length()) {
+
+                    // Reading the contact from the file
+                    nameNumberString = raf.readLine();
+
+                    index = nameNumberString.indexOf('_');
+                    name = nameNumberString.substring(
+                        0, index);
+
+                    // Check if the fetched contact
+                    // is the one to be deleted
+                    if (name.equals(newName)) {
+
+                        // Skip inserting this contact
+                        // into the temporary file
+                        continue;
+                    }
+
+                    // Add this contact in the temporary
+                    // file
+                    tmpraf.writeBytes(nameNumberString);
+
+                    // Add the line separator in the
+                    // temporary file
+                    tmpraf.writeBytes(
+                        System.lineSeparator());
+                }
+
+                // The contact has been deleted now
+                // So copy the updated content from
+                // the temporary file to original file.
+
+                // Set both files pointers to start
+                raf.seek(0);
+                tmpraf.seek(0);
+
+                // Copy the contents from
+                // the temporary file to original file.
+                while (tmpraf.getFilePointer()
+                       < tmpraf.length()) {
+                    raf.writeBytes(tmpraf.readLine());
+                    raf.writeBytes(System.lineSeparator());
+                }
+
+                // Set the length of the original file
+                // to that of temporary.
+                raf.setLength(tmpraf.length());
+
+                // Closing the resources.
+                tmpraf.close();
+                raf.close();
+
+                // Deleting the temporary file
+                tmpFile.delete();
+                JOptionPane.showMessageDialog(null, "Friend " +newName + " deleted", "Deleted", JOptionPane.INFORMATION_MESSAGE);
+
+                System.out.println(" Friend deleted. ");
+            }
+
+            // The contact to be deleted
+            // could not be found
+            else {
+
+                // Closing the resources.
+                raf.close();
+
+                // Print the message
+                JOptionPane.showMessageDialog(null, "The friend "+newName +" does not exist", "Not found", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+
+        catch (IOException ioe) {
+            System.out.println(ioe);
+        }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
@@ -295,6 +445,158 @@ public class Formulario extends javax.swing.JFrame {
         fieldName.setText("");
         fieldNumber.setText("");
     }//GEN-LAST:event_clearButtonActionPerformed
+
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        // TODO add your handling code here:
+        try {
+
+            // Get the name of the contact to be updated
+            // from the Command line argument
+            String newName = fieldName.getText();
+            long newNumber = Long.parseLong(fieldNumber.getText());
+
+            String nameNumberString;
+            String name;
+            long number;
+            int index;
+
+            // Using file pointer creating the file.
+            File file = new File("C:\\Users\\paula\\OneDrive\\Documentos\\GitHub\\ProgramacionOrientadaObjetos\\Actividad5\\friendsContact.txt");
+
+            if (!file.exists()) {
+
+                // Create a new file if not exists.
+                file.createNewFile();
+            }
+
+            // Opening file in reading and write mode.
+            RandomAccessFile raf
+                = new RandomAccessFile(file, "rw");
+            boolean found = false;
+
+            // Checking whether the name
+            // of contact already exists.
+            // getFilePointer() give the current offset
+            // value from start of the file.
+            while (raf.getFilePointer() < raf.length()) {
+
+                // reading line from the file.
+                nameNumberString = raf.readLine();
+
+                // splitting the string to get name and
+                // number
+                String[] lineSplit
+                    = nameNumberString.split("_");
+
+                // separating name and number.
+                name = lineSplit[0];
+                number = Long.parseLong(lineSplit[1]);
+
+                // if condition to find existence of record.
+                if (name.equals(newName)|| number == newNumber) {
+                    found = true;
+                    break;
+                }
+            }
+
+            // Update the contact if record exists.
+            if (found == true) {
+
+                // Creating a temporary file
+                // with file pointer as tmpFile.
+                File tmpFile = new File("C:\\Users\\paula\\OneDrive\\Documentos\\GitHub\\ProgramacionOrientadaObjetos\\Actividad5\\tempUpdate.txt");
+
+                // Opening this temporary file
+                // in ReadWrite Mode
+                RandomAccessFile tmpraf = new RandomAccessFile(tmpFile, "rw");
+
+                // Set file pointer to start
+                raf.seek(0);
+
+                // Traversing the friendsContact.txt file
+                while (raf.getFilePointer()
+                       < raf.length()) {
+
+                    // Reading the contact from the file
+                    nameNumberString = raf.readLine();
+
+                    index = nameNumberString.indexOf('_');
+                    name = nameNumberString.substring(0, index);
+
+                    // Check if the fetched contact
+                    // is the one to be updated
+                    if (name.equals(newName)) {
+
+                        // Update the number of this contact
+                        nameNumberString = name + "_" + String.valueOf(newNumber);
+                    }
+
+                    // Add this contact in the temporary
+                    // file
+                    tmpraf.writeBytes(nameNumberString);
+
+                    // Add the line separator in the
+                    // temporary file
+                    tmpraf.writeBytes(System.lineSeparator());
+                }
+
+                // The contact has been updated now
+                // So copy the updated content from
+                // the temporary file to original file.
+
+                // Set both files pointers to start
+                raf.seek(0);
+                tmpraf.seek(0);
+
+                // Copy the contents from
+                // the temporary file to original file.
+                while (tmpraf.getFilePointer() < tmpraf.length()) {
+                    raf.writeBytes(tmpraf.readLine());
+                    raf.writeBytes(System.lineSeparator());
+                }
+
+                // Set the length of the original file
+                // to that of temporary.
+                raf.setLength(tmpraf.length());
+
+                // Closing the resources.
+                tmpraf.close();
+                raf.close();
+
+                // Deleting the temporary file
+                tmpFile.delete();
+                JOptionPane.showMessageDialog(null, "The Friend's number of "+newName+ " was updated", "Successfull update", JOptionPane.INFORMATION_MESSAGE);
+
+            }
+
+            // The contact to be updated
+            // could not be found
+            else {
+
+                // Closing the resources.
+                raf.close();
+
+                // Print the message
+                System.out.println(" Input name"
+                                   + " does not exists. ");
+            }
+        }
+
+        catch (IOException ioe) {
+            System.out.println(ioe);
+        }
+
+        catch (NumberFormatException nef) {
+            System.out.println(nef);
+        }
+    
+    }//GEN-LAST:event_updateButtonActionPerformed
+
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+
+    }//GEN-LAST:event_exitButtonActionPerformed
 
     /**
      * @param args the command line arguments
