@@ -2,22 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.ejercicio4_4;
+package com.mycompany.ejercicio4_6;
 
 /**
  *
  * @author paula
  */
 public class Profesor {
-    String nombre;
-
-    
-    protected void constructor(String nombre){
-        this.nombre = nombre;
-    }
-    
     protected void imprimir() {
-        System.out.println(nombre + " es un profesor.");
+        System.out.println("Es un profesor.");
     }
-    
 }
